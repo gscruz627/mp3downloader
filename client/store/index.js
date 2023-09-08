@@ -9,7 +9,7 @@ const initialState = {
 export const authSlice = createSlice({
     name: "auth",
     initialState,
-    reducer: {
+    reducers: {
         setLogin: (state, action) => {
             state.user = action.payload.user;
             state.token = action.payload.token;
@@ -18,7 +18,7 @@ export const authSlice = createSlice({
             state.user = null;
             state.token = null
         },
-        setDownloads: (state) => {
+        setDownloads: (state, action) => {
             state.downloads = action.payload.downloads
         }
     }

@@ -14,7 +14,7 @@ const HomePage = () => {
     { !isAuth ? (
         <>
         <Link to="/login"><button>Login</button></Link>
-        <Link to="/register"><buton>Register</buton></Link>  
+        <Link to="/register"><button>Register</button></Link>  
         </>  
     ) : (
         <>

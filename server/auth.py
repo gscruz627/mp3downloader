@@ -1,16 +1,22 @@
-from flask import Blueprint, jsonify, request, Response
-from app import db
+from flask import Blueprint, jsonify, request
+from . import db
 from werkzeug.security import generate_password_hash, check_password_hash
-from models import User
+from flask_cors import cross_origin
+from .models import User
 import jwt
+from dotenv import load_dotenv
+load_dotenv()
+from os import getenv
+auth = Blueprint("auth", __name__)
+import json
+JWT_SECRET = getenv("JWT_SECRET")
 
-auth = Blueprint(__name__)
-
-@auth.route("/register")
+@auth.route("/register", methods=["POST"])
+@cross_origin(origins="http://localhost:5173", supports_credentials=True)
 def register():
 
-    username = request.form["username"]
-    password = request.form["password"]
+    username = request.json["username"]
+    password = request.json["password"]
 
     if User.query.filter_by(username=username).first():
         return jsonify({"error": "User Already Exists"}, 401)
@@ -25,15 +31,21 @@ def register():
 
     return jsonify({"user": newUser}, 201)
 
-@auth.route("/login")
+@auth.route("/login", methods=["POST"])
+@cross_origin(origins="http://localhost:5173", supports_credentials=True)
 def login():
-    username = request.form["username"]
-    password = request.form["password"]
-    user = User.query.filter_by(username).first()
+
+    username = request.json["username"]
+    password = request.json["password"]
+    
+    user = User.query.filter_by(username=username).first()
+    
     if not user:
         return jsonify({"error": "Authentication Error"}, 404)
+    
     if not check_password_hash(user.password, password):
         return jsonify({"error": "Authentication Error"}, 404)
-    token = jwt.encode({"user": user}, algorithm="sha256")
-    return jsonify({"user" : user, "token":token})
     
+    token = jwt.encode({"user": user.serialized()}, algorithm="HS256", key=JWT_SECRET)
+    
+    return jsonify({"user" : user.serialized(), "token":token}, 200)    

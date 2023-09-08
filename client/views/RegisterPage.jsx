@@ -1,38 +1,38 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { setLogin } from '../store'
-import { redirect } from 'react-router'
+import { redirect, useNavigate } from 'react-router'
+import Navbar from '../components/Navbar'
 
 const RegisterPage = () => {
-    const SERVER_URL = import.meta.env.SERVER_URL
+    const SERVER_URL = import.meta.env.VITE_SERVER_URL
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [passwordV, setPasswordV] = useState("");
     const [isUsernameValid, setIsUsernameValid] = useState(false);
     const [isPasswordValid, setIsPasswordValid] = useState(false);
     const [doPasswordsMatch, setDoPasswordsMatch] = useState(false);
+    const navigate = useNavigate()
 
-    const checkUsernameValid = () => {
+    useEffect(() => {
         if (username.length < 3) {
-            return false;
+            setIsUsernameValid(false)
         }
-        if (username === password) {
-            return false;
+        else if (username === password) {
+            setIsUsernameValid(false)
+        } else {
+            setIsUsernameValid(true)
         }
-        return true;
-    }
-    const checkIsPasswordValid = () => {
-        return /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(password)
-    }
-    const checkDoPasswordsMatch = () => {
-        return password === passwordV
-    }
-    setIsUsernameValid(checkUsernameValid());
-    setIsPasswordValid(checkIsPasswordValid());
-    setDoPasswordsMatch(checkDoPasswordsMatch());
-    const registerForm = async () => {
+    }, [username])
 
+    useEffect(() => {
+        setIsPasswordValid(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(password))
+        setDoPasswordsMatch(password === passwordV)
+    }, [password, passwordV])
+
+    const handleSubmit = async (event) => {
+        event.preventDefault()
         if (isUsernameValid && isPasswordValid && doPasswordsMatch) {
-            request = await fetch(`${SERVER_URL}/register`, {
+            const request = await fetch(`${SERVER_URL}/register`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -45,20 +45,33 @@ const RegisterPage = () => {
                 setPassword("")
                 setPasswordV("")
             } else {
-                return redirect("/login")
+                navigate("/login")
             }
+        } else if(!isUsernameValid){
+            alert("Username is invalid, try again");
+        } else if(!isPasswordValid){
+            alert("Password invalid, Try again")
+        } else{
+            alert("Passwords don't match, try again")
         }
     }
     return (
-        <form>
-            <label htmlFor="username">Username: </label>
-            <input name="username" type="text" value={username} onChange={(event) => setUsername(event.target.value)} />
-            <label htmlFor="password">Password: </label>
-            <input name="password" type="password" value={password} onChange={(event) => setPassword(event.target.value)} />
-            <label htmlFor="passwordV">Confirm Password: </label>
-            <input name="passwordV" type="password" value={passwordV} onChange={(event) => setPasswordV(event.target.value)} />
-            <button type="submit" style={{ display: (isUsernameValid && isPasswordValid && doPasswordsMatch) ? "block" : "none" }}>Register</button>
-        </form>
+        <>
+            <Navbar />
+            <div className="center-block">
+                <h1>Register</h1>
+                <br/><br/>
+                <form onSubmit={(event) => handleSubmit(event)} style={{textAlign: "center"}}>
+                    <label htmlFor="username">Username (3 min): </label>
+                    <input name="username" type="text" value={username} onChange={(event) => setUsername(event.target.value)} />
+                    <label htmlFor="password">Password (8 min, 1 Uppercase, 1 Special): </label>
+                    <input name="password" type="password" value={password} onChange={(event) => setPassword(event.target.value)} />
+                    <label htmlFor="passwordV">Confirm Password: </label>
+                    <input name="passwordV" type="password" value={passwordV} onChange={(event) => setPasswordV(event.target.value)} />
+                    <button style={{textAlign: "center" }} className="btn blueBTN" type="submit" disabled={!(isUsernameValid && isPasswordValid && doPasswordsMatch)}>Register</button>
+                </form>
+            </div>
+        </>
     )
 }
 

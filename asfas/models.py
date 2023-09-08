@@ -1,17 +1,17 @@
-from ..app import db
+from app import db
 
 class User(db.Model):
     __tablename__="users"
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(255), unique=True)
     password = db.Column(db.String(255), unique=True)
-    downloads = db.relationship("Download", backref="author", lazy=True)
+    #downloads = db.relationship("Download", backref="author", lazy=True)
 
     def __init__(self, username, password):
         self.username = username
         self.password = password
 
-class Download(db.Model):
+'''class Download(db.Model):
     __tablename__="downloads"
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(255))
@@ -20,4 +20,4 @@ class Download(db.Model):
 
     def __init__(self,title, url):
         self.title = title
-        self.url = url
+        self.url = url'''
