@@ -11,6 +11,7 @@ load_dotenv()
 main = Blueprint("main", __name__)
 
 JWT_SECRET_KEY = getenv("JWT_SECRET")
+CLIENT_URL = getenv("CLIENT_URL")
 
 
 @main.route("/")
@@ -19,7 +20,7 @@ def homepage():
 
 
 @main.route("/downloads/<int:user_id>")
-@cross_origin(origins="http://localhost:5173", supports_credentials=True)
+@cross_origin(origins=CLIENT_URL, supports_credentials=True)
 def downloads(user_id):
     token = request.headers.get("Authorization")
     if token.startswith("Bearer "):
@@ -39,7 +40,7 @@ def downloads(user_id):
 
 
 @main.route("/newdownload", methods=["POST"])
-@cross_origin(origins="http://localhost:5173", supports_credentials=True)
+@cross_origin(origins=CLIENT_URL, supports_credentials=True)
 def newdownload():
     owner_id = request.json["user_id"]
     title = request.json["title"]
@@ -59,5 +60,4 @@ def newdownload():
     if not download:
         return Response("Defect Download, please try again", 400)
 
-   # return jsonify({download: download.serialized()}, 201)
-    return "hi"
+    return jsonify({download: download.serialized()}, 201)

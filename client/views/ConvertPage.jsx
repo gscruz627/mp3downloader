@@ -7,6 +7,7 @@ import { useParams, useLocation } from 'react-router';
 const ConvertPage = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
+  const RAPID_KEY = import.meta.env.RAPID_KEY
 
   const link = searchParams.get('link');
   const SERVER_URL = import.meta.env.VITE_SERVER_URL;
@@ -32,7 +33,7 @@ const ConvertPage = () => {
       const infoRequest = await fetch(`https://youtube-mp3-download1.p.rapidapi.com/dl?id=${videoId}`, {
         method: 'GET',
         headers: {
-          'X-RapidAPI-Key': 'a6569494c5mshfe29d4cc7380ab6p145a89jsn85289c6ff5f8',
+          'X-RapidAPI-Key': RAPID_KEY,
           'X-RapidAPI-Host': 'youtube-mp3-download1.p.rapidapi.com'
         }
       })

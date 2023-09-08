@@ -10,9 +10,10 @@ from os import getenv
 auth = Blueprint("auth", __name__)
 import json
 JWT_SECRET = getenv("JWT_SECRET")
+CLIENT_URL = getenv("CLIENT_URL")
 
 @auth.route("/register", methods=["POST"])
-@cross_origin(origins="http://localhost:5173", supports_credentials=True)
+@cross_origin(origins=CLIENT_URL, supports_credentials=True)
 def register():
 
     username = request.json["username"]
@@ -32,7 +33,7 @@ def register():
     return jsonify({"user": newUser}, 201)
 
 @auth.route("/login", methods=["POST"])
-@cross_origin(origins="http://localhost:5173", supports_credentials=True)
+@cross_origin(origins=CLIENT_URL, supports_credentials=True)
 def login():
 
     username = request.json["username"]
