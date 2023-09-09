@@ -18,7 +18,6 @@ def create_app(config, debug):
 
     db.init_app(app)
 
-    from . import models
     from .models import User
 
     with app.app_context():
