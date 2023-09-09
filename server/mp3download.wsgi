@@ -1,1 +1,0 @@
-gunicorn -w 4 'server:create_app()'
