@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from __init__ import db
+from app import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_cors import cross_origin
 from models import User
