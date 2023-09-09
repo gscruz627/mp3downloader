@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 db = SQLAlchemy()
-def create_app(config, debug):
+def create_app():
 
     app = Flask(__name__)
     app.config["SECRET_KEY"] = os.getenv("JWT_SECRET_KEY")
@@ -18,13 +18,13 @@ def create_app(config, debug):
 
     db.init_app(app)
 
-    from .models import User
+    from models import User
 
     with app.app_context():
         db.create_all()
         
-    from .main import main as main_blueprint
-    from .auth import auth as auth_blueprint
+    from main import main as main_blueprint
+    from auth import auth as auth_blueprint
 
     app.register_blueprint(main_blueprint)
     app.register_blueprint(auth_blueprint)
