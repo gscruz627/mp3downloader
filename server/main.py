@@ -1,8 +1,8 @@
 from flask import Blueprint, Response, request, jsonify
 from flask_cors import cross_origin
-from .models import Download, User
+from models import Download, User
 import jwt
-from . import db
+from server import db
 from os import getenv
 from dotenv import load_dotenv
 load_dotenv()

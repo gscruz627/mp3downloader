@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from . import db
+from server import db
 from flask_login import UserMixin
 import json
 
