@@ -1,1 +1,1 @@
-gunicorn -w 4 'server:create_app'
+gunicorn -w 4 'server:create_app()'
