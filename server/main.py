@@ -25,8 +25,6 @@ def downloads(user_id):
     token = request.headers.get("Authorization")
     if token.startswith("Bearer "):
         token = token[7:]
-        print(token)
-        print(type(token))
         if jwt.decode(token, JWT_SECRET_KEY, algorithms=["HS256"]):
             downloads = Download.query.filter_by(owner_id=user_id)
             serialized_downloads = []
@@ -53,7 +51,6 @@ def newdownload():
     )
     db.session.add(download)
     db.session.commit()
-    print(download)
     if not user:
         return Response("User not found, please authenticate", 403)
 
