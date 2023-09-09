@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 db = SQLAlchemy()
-def create_app():
+def create_app(config, debug):
 
     app = Flask(__name__)
     app.config["SECRET_KEY"] = os.getenv("JWT_SECRET_KEY")
