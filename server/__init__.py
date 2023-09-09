@@ -12,7 +12,6 @@ def create_app():
 
     app = Flask(__name__)
     app.config["SECRET_KEY"] = os.getenv("JWT_SECRET_KEY")
-    print(os.getenv("DATABASE_URL"))
     app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL")
     cors = CORS(app)
     app.config['CORS_HEADERS'] = 'Content-Type'

@@ -22,7 +22,6 @@ pafy==0.5.5
 psycopg2-binary==2.9.7
 pycparser==2.21
 PyJWT==2.8.0
-python-dotenv==1.0.0
 requests==2.31.0
 soupsieve==2.5
 SQLAlchemy==2.0.19
