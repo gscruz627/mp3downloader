@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import NavbarES from '../components/NavbarES';
+import Navbar from '../components/Navbar';
 import "../public/styles.css"
 import { useSelector } from 'react-redux';
 import { useParams, useLocation } from 'react-router';
@@ -96,7 +96,7 @@ const ConvertPage = () => {
   }
   return (
     <>
-      <NavbarES />
+      <Navbar/>
       <div className="center-block">
         <p style={{display: displaySucess ? "block" : "none", color: "green"}}>Successfully saved to Your Downloads</p>
         <h1>Convert a new URL</h1>
