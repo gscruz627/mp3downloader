@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { setLogin } from '../store'
 import { redirect, useNavigate } from 'react-router'
 import { useDispatch } from "react-redux"
-import Navbar from '../components/Navbar'
+import NavbarES from '../components/NavbarES'
 
 const LoginPageES = () => {
     const SERVER_URL = import.meta.env.VITE_SERVER_URL
@@ -34,7 +34,7 @@ const LoginPageES = () => {
     }
     return (
         <>
-        <Navbar/>
+        <NavbarES/>
         <div className="center-block">
             <h1>Ingresa a tu cuenta</h1>
             <br/><br/>

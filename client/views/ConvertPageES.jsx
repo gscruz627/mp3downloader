@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Navbar from '../components/Navbar';
+import NavbarES from '../components/NavbarES';
 import "../public/styles.css"
 import { useSelector } from 'react-redux';
 import { useParams, useLocation } from 'react-router';
@@ -96,7 +96,7 @@ const ConvertPageES = () => {
   }
   return (
     <>
-      <Navbar />
+      <NavbarES />
       <div className="center-block">
         <p style={{display: displaySucess ? "block" : "none", color: "green"}}>Guardado en tu cuenta correctamente</p>
         <h1>Convierte y Descarga un link de Youtube</h1>

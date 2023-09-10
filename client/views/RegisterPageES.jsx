@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { setLogin } from '../store'
 import { redirect, useNavigate } from 'react-router'
-import Navbar from '../components/Navbar'
+import NavbarES from '../components/NavbarES'
 
 const RegisterPageES = () => {
     const SERVER_URL = import.meta.env.VITE_SERVER_URL
@@ -57,7 +57,7 @@ const RegisterPageES = () => {
     }
     return (
         <>
-            <Navbar />
+            <NavbarES />
             <div className="center-block">
                 <h1>Crear Usuario</h1>
                 <br/><br/>

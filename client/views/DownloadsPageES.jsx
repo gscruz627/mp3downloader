@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import Navbar from '../components/Navbar'
+import NavbarES from '../components/NavbarES'
 import { useSelector, useDispatch } from 'react-redux'
 import { setDownloads } from '../store';
 import { Link } from 'react-router-dom';
@@ -27,7 +27,7 @@ const DownloadsPageES = () => {
     }, [])
     return (
         <>
-            <Navbar />
+            <NavbarES />
             <div className="center-block">
                 <h2>Links Guardados</h2>
                 <br />
