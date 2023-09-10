@@ -1,9 +1,12 @@
 import { BrowserRouter, Navigate, Routes, Route }from "react-router-dom"
-import HomePage from "../views/HomePage"
 import RegisterPage from "../views/RegisterPage"
 import LoginPage from "../views/LoginPage"
 import ConvertPage from "../views/ConvertPage"
 import DownloadsPage from "../views/DownloadsPage"
+import RegisterPageES from "../views/RegisterPageES"
+import LoginPageES from "../views/LoginPageES"
+import ConvertPageES from "../views/ConvertPageES"
+import DownloadsPageES from "../views/DownloadsPageES"
 import '../public/styles.css'
 
 function App() {
@@ -14,6 +17,10 @@ function App() {
         <Route path="/login" element={<LoginPage/>}/>
         <Route path="/register" element={<RegisterPage/>}/>
         <Route path="/downloads" element={<DownloadsPage/>}/>
+        <Route path="/es" element={<ConvertPageES/>}/>
+        <Route path="/es/login" element={<LoginPageES/>}/>
+        <Route path="/es/register" element={<RegisterPageES/>}/>
+        <Route path="/es/downloads" element={<DownloadsPageES/>}/>
       </Routes>
     </BrowserRouter>
   )
