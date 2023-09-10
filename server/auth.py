@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from app import db
 from werkzeug.security import generate_password_hash, check_password_hash
-from waitress import serve
+
 from flask_cors import cross_origin
 from models import User
 import jwt
