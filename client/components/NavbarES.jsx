@@ -13,18 +13,18 @@ const NavbarES = () => {
   }
   return (
     <nav>
-      <Link to="/" style={{ textDecoration: "none", display: "block", marginRight: "auto" }}><h2 style={{ marginRight: "auto" }}>G-MP3 Download</h2></Link>
+      <Link to="/es" style={{ textDecoration: "none", display: "block", marginRight: "auto" }}><h2 style={{ marginRight: "auto" }}>G-MP3 Download</h2></Link>
       <div>
         {isAuth ? (
           <>
-            <Link to="/downloads">
+            <Link to="/es/downloads">
               <button className="gray-txt btn trans-btn">Mis Descargas</button>
             </Link>
             <button className="gray-txt btn trans-btn" onClick={() => handleLogout()}>Cerrar Sesion</button>
           </>
         ) : (
           <>
-            <Link to="/es/ register">
+            <Link to="/es/register">
               {isSmallScreen ? (
                 <i className="fa-solid fa-user-plus"></i>
               ) :
