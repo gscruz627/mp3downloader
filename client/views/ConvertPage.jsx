@@ -7,7 +7,7 @@ import { useParams, useLocation } from 'react-router';
 const ConvertPage = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const RAPID_KEY = import.meta.env.RAPID_KEY
+  const RAPID_KEY = import.meta.env.VITE_RAPID_KEY
 
   const link = searchParams.get('link');
   const SERVER_URL = import.meta.env.VITE_SERVER_URL;
