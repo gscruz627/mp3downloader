@@ -24,14 +24,14 @@ const NavbarES = () => {
           </>
         ) : (
           <>
-            <Link to="/register">
+            <Link to="/es/ register">
               {isSmallScreen ? (
                 <i className="fa-solid fa-user-plus"></i>
               ) :
                 <button className="white-txt btn trans-btn">Crear Usuario</button>
               }
             </Link> &nbsp;&nbsp;&nbsp;
-            <Link to="/login">
+            <Link to="/es/login">
               {isSmallScreen ? (
                 <i className="fa-solid fa-right-to-bracket"></i>
               ) :
