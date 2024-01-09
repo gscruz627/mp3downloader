@@ -4,8 +4,13 @@ This app uses ReactJS for the front-end with tools such as FontAwesome, Redux To
 database
 ## Images
 1. This first image shows a successfully converted URL:
-![converted video](https://github.com/n48.png "Logo Title")
+   
+<img src="https://raw.githubusercontent.com/gscruz627/mp3downloader/master/client/public/mp3_convert.png" width="300px"/>
+
 2. This image shows a responsive version of the conversion page
-![responsive view](https://github.com/n48.png "Logo Title")
+   
+<img src="https://raw.githubusercontent.com/gscruz627/mp3downloader/master/client/public/mp3_res.png" width="300px"/>
+
 3. This image shows a spanish version of the site.
-![spanish version](https://github.com/n48.png "Logo Title")
+   
+<img src="https://raw.githubusercontent.com/gscruz627/mp3downloader/master/client/public/mp3_spanish.png" width="300px"/>
